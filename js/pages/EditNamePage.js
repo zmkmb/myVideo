@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import TopBar from '../component/TopBar';
-import { login, upDataUserInfo } from '../store/action';
+import { login, updateUserInfo } from '../store/action';
 import api from '../api';
 
 class EditeNamePage extends React.Component {
@@ -34,7 +34,7 @@ class EditeNamePage extends React.Component {
         }
         api.post('/user/updateName', { username: this.state.username }).then((res) => {
             if (res.result) {
-                this.props.upDataUserInfo(res.data);
+                this.props.updateUserInfo(res.data);
                 this.props.navigation.goBack();
             }
         })
@@ -97,8 +97,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        upDataUserInfo: (data) => {
-            return dispatch(upDataUserInfo(data))
+        updateUserInfo: (data) => {
+            return dispatch(updateUserInfo(data))
         }
     }
 }

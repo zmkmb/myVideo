@@ -22,9 +22,7 @@ export const register = (data)=>{
 
 export const  updateUserInfo = (info)=>{
     myStorage.set('user', info);
-    if(typeof(info.avatar) == 'string'){
-        info.avatar = {uri:info.avatar};
-    }
+
     return {
         type:'updateUserInfo',
         info

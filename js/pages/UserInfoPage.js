@@ -11,7 +11,7 @@ import {
 import { connect } from 'react-redux';
 import TopBar from '../component/TopBar';
 import ImagePicker from 'react-native-image-picker';
-import { login,upDataUserInfo } from '../store/action';
+import { login,updateUserInfo } from '../store/action';
 import api from '../api';
 const options = {
     title: '选择图片',
@@ -83,11 +83,20 @@ class UserInfoPage extends React.Component {
            
                 api.post('/user/uploadHeadImg',formData,{upload:true}).then((res)=>{
                     if(res.result){
-                        this.props.upDataUserInfo(res.data);
+                        this.props.updateUserInfo(res.data);
                     }
                 })
             }
         });
+    }
+
+    renderImage(){
+        if(this.props.user.avatar){
+            return <Image  source={{uri:this.props.user.avatar}} style={{width:60,height:60,backgroundColor:"#ccc",marginRight:10,borderRadius:8}} />
+        }else{
+            return <Image  source={require(`../../static/img/headImg.jpeg`)} style={{width:60,height:60,backgroundColor:"#ccc",marginRight:10,borderRadius:8}} />
+        }
+        
     }
 
     render() {
@@ -96,7 +105,7 @@ class UserInfoPage extends React.Component {
             <TouchableHighlight onPress={() => { this.showImagePicker() }} style={{width:"100%",marginTop:10}} underlayColor="#ddd">
             <View style={{...styles.list,height:80}}>
                     <Text style={styles.listText}>头像</Text>
-                    <Image source={this.props.user.avatar} style={{width:60,height:60,backgroundColor:"#ccc",marginRight:10,borderRadius:8}}/>
+                    {this.renderImage()}
                     <Icon name="right" style={{color:"#999"}}></Icon>
                 </View>
             </TouchableHighlight>
@@ -143,8 +152,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        upDataUserInfo: (data) => {
-            return dispatch(upDataUserInfo(data))
+        updateUserInfo: (data) => {
+            return dispatch(updateUserInfo(data))
         }
     }
 }

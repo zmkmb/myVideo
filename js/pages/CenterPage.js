@@ -51,13 +51,22 @@ class CenterPage extends React.Component {
         </View>)
     }
 
+    renderImage(){
+        if(this.props.user.avatar){
+            return <Image  source={{uri:this.props.user.avatar}} style={{ width: 80, height: 80, borderRadius: 40 }} />
+        }else{
+            return <Image  source={require(`../../static/img/headImg.jpeg`)} style={{ width: 80, height: 80, borderRadius: 40 }} />
+        }
+        
+    }
+
 
     render() {
         return (<View style={styles.page}>
             <ImageBackground source={require(`../../static/img/bg.jpg`)} opacity={0.8} style={{ width: '100%', height: 180 }}>
                 <View style={styles.head}>
                     <View style={styles.headLeft}>
-                        <Image source={this.props.user.avatar} style={{ width: 80, height: 80, borderRadius: 40 }} />
+                        {this.renderImage()}
                     </View>
                     {/* <View style={styles.headRight}>
                             <Text style={styles.name}>{this.props.user.mobile.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2")}</Text>

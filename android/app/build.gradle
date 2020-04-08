@@ -196,8 +196,6 @@ dependencies {
     }
     implementation files('libs/umeng-analytics-8.0.0.jar')
     implementation files('libs/umeng-common-2.0.1.jar')
-    implementation files('libs/umeng-share-core-6.9.3.jar')
-    implementation files('libs/umeng-share-QQ-simplify-6.9.3.jar')
 }
 
 // Run this once to be able to run the application with BUCK

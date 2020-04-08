@@ -1,7 +1,7 @@
  let userInitState = {
     userId:0,
     authtoken:'',
-    avatar:require('../../../static/img/headImg.jpeg'),
+    avatar:'',
     headImg:'',
     username:'',
     mobile:''
